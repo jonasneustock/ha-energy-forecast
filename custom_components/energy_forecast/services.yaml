@@ -1,0 +1,37 @@
+acknowledge:
+  name: Acknowledge a rule action
+  description: Report that an external Home Assistant automation successfully started, completed, stopped, or failed an action.
+  fields:
+    rule_id:
+      name: Rule ID
+      description: Rule identifier from energy_forecast_rule event data.
+      required: true
+      selector:
+        text:
+    status:
+      name: Acknowledgement
+      required: true
+      selector:
+        select:
+          options:
+            - started
+            - completed
+            - stopped
+            - failed
+override:
+  name: Manually override an energy rule
+  description: Pause the rule when an operator changes equipment manually. Set minutes to 0 to resume.
+  fields:
+    rule_id:
+      name: Rule ID
+      required: true
+      selector:
+        text:
+    minutes:
+      name: Override duration (minutes)
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 10080
+          mode: box
